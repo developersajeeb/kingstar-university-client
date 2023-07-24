@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 import Swal from "sweetalert2";
 import SocialLogin from "../../components/SocialLogin";
@@ -8,27 +8,39 @@ import SocialLogin from "../../components/SocialLogin";
 const Register = () => {
     const { createUser, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate();
-    const location = useLocation();
-
-    const from = location.state?.from?.pathname || '/';
 
     const handleRegister = event => {
         event.preventDefault();
         const form = event.target;
+        const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
+        const photo = form.photo.value;
+        const role = 'user';
 
         createUser(email, password)
             .then(() => {
 
                 updateUserProfile(email, password)
                     .then(() => {
-                        Swal.fire(
-                            'Successful Register!',
-                            'You have successfully Register.',
-                            'success'
-                        )
-                        navigate(from);
+
+                        const saveUser = { name, email, password, photo, role }
+                        fetch('http://localhost:5000/users', {
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(saveUser)
+                        })
+                        .then(result => result.json())
+                        .then(() => {
+                            Swal.fire(
+                                'Successful Register!',
+                                'You have successfully Register.',
+                                'success'
+                            )
+                            navigate('/');
+                        })
                     })
                 // setLogError('')
             })
@@ -66,15 +78,6 @@ const Register = () => {
                     {/* {
                         logError && <p className="text-red-500 text-center text-sm">{logError}</p>
                     } */}
-                    <div className="flex items-start">
-                        <div className="flex items-start">
-                            <div className="flex items-center h-5">
-                                <input id="remember" type="checkbox" value="" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-orange-300 text-orange-500"></input>
-                            </div>
-                            <label htmlFor="remember" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
-                        </div>
-                        <a href="#" className="ml-auto text-sm color-one hover:underline">Lost Password?</a>
-                    </div>
                     <button type="submit" className="w-full text-white bg-two duration-300 hover:bg-[#62da8c] font-medium rounded-md px-5 py-2.5 text-center">Register to your account</button>
                     <h4 className='text-center text-lg font-semibold text-gray-700'>Or SingUp With</h4>
                     <SocialLogin></SocialLogin>

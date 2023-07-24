@@ -55,7 +55,7 @@ const NavBar = () => {
                             user ?
                                 <>
                                     <NavLink className={({ isActive }) => isActive ? 'color-one' : 'text-gray-900'} to='/my-college'>My College</NavLink>
-                                    <NavLink className='color-one hover:underline duration-300' to='/my-profile'>{user.displayName.slice(0,6)}...</NavLink>
+                                    <NavLink className='color-one hover:underline duration-300' to='/my-profile'>{user?.displayName?.slice(0,6)}...</NavLink>
                                     <NavLink onClick={handleLogOut} className={({ isActive }) => isActive ? 'color-one' : 'text-gray-900'}><FaSignOutAlt size={24} /></NavLink>
                                 </>
                                 :
@@ -78,7 +78,7 @@ const NavBar = () => {
                         user ?
                             <>
                                 <NavLink className={({ isActive }) => isActive ? 'color-one border-b border-gray-300 py-4 ' : ' border-b border-gray-300 py-4 text-gray-900'} to='/my-college'>My College</NavLink>
-                                <NavLink className='color-one hover:underline duration-300 border-b border-gray-300 py-4' to='/my-profile'>{user.displayName.slice(0,6)}...</NavLink>
+                                <NavLink className='color-one hover:underline duration-300 border-b border-gray-300 py-4' to='/my-profile'>{user?.displayName?.slice(0,6)}...</NavLink>
                                 <NavLink onClick={handleLogOut} className={({ isActive }) => isActive ? 'color-one pt-4 mx-auto' : 'text-gray-900 pt-4 mx-auto'}><FaSignOutAlt size={24} /></NavLink>
                             </>
                             :

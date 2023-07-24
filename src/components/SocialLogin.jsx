@@ -1,10 +1,11 @@
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProviders";
 import { useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
 const SocialLogin = () => {
-    const {googleSingIn, githubSingIn} = useContext(AuthContext);
+    const { googleSingIn, githubSingIn } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -12,18 +13,54 @@ const SocialLogin = () => {
 
     const handleGoogleSingIn = () => {
         googleSingIn()
-        .then(result => {
-            console.log(result.user);
-            navigate(from, {replace: true});
-        })
+            .then(result => {
+                console.log(result.user);
+
+                const loggedInUser = result.user;
+                const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email, role: 'user', photo: loggedInUser.photoURL }
+                fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(saveUser)
+                })
+                    .then(result => result.json())
+                    .then(() => {
+                        Swal.fire(
+                            'Welcome Back!',
+                            'You have successfully entered the website.',
+                            'success'
+                        )
+                        navigate(from, { replace: true });
+                    })
+            })
     }
 
     const handleGithubSingIn = () => {
         githubSingIn()
-        .then(result => {
-            console.log(result.user);
-            navigate(from, {replace: true});
-        })
+            .then(result => {
+                console.log(result.user);
+
+                const loggedInUser = result.user;
+                const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email, role: 'user', photo: loggedInUser.photoURL }
+                fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(saveUser)
+                })
+                    .then(result => result.json())
+                    .then(() => {
+                        Swal.fire(
+                            'Welcome Back!',
+                            'You have successfully entered the website.',
+                            'success'
+                        )
+                        navigate(from, { replace: true });
+                    })
+            })
     }
     return (
         <div className='flex gap-5 justify-center'>
