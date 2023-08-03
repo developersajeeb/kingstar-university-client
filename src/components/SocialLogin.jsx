@@ -17,7 +17,7 @@ const SocialLogin = () => {
                 console.log(result.user);
 
                 const loggedInUser = result.user;
-                const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email, role: 'user', photo: loggedInUser.photoURL }
+                const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email, role: 'normalUser', photo: loggedInUser.photoURL }
                 fetch('http://localhost:5000/users', {
                     method: 'POST',
                     headers: {
@@ -43,7 +43,8 @@ const SocialLogin = () => {
                 console.log(result.user);
 
                 const loggedInUser = result.user;
-                const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email, role: 'user', photo: loggedInUser.photoURL }
+                const saveUser = { name: loggedInUser.displayName, email: loggedInUser?.email, role: 'user', photo: loggedInUser.photoURL }
+                
                 fetch('http://localhost:5000/users', {
                     method: 'POST',
                     headers: {
@@ -51,11 +52,12 @@ const SocialLogin = () => {
                     },
                     body: JSON.stringify(saveUser)
                 })
-                    .then(result => result.json())
-                    .then(() => {
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
                         Swal.fire(
                             'Welcome Back!',
-                            'You have successfully entered the website.',
+                            'You have successfully entered the website',
                             'success'
                         )
                         navigate(from, { replace: true });
