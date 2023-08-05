@@ -3,6 +3,7 @@ import { FaSearch } from "react-icons/fa";
 import SectionTitle from '../../components/SectionTitle';
 import ImageGallery from '../../components/ImageGallery';
 import ReviewSlider from '../../components/ReviewSlider';
+import { FaStar } from "react-icons/fa";
 
 const Home = () => {
     return (
@@ -10,7 +11,7 @@ const Home = () => {
             <header style={{ backgroundImage: `url(${bannerImg})` }} className='bg-cover bg-center bg-no-repeat'>
                 <section className='bg-gradient-to-r from-[#192F59] px-5 py-40 text-white md:px-40 md:py-48'>
                     <h2 className='text-xl md:text-4xl'>The Best College Of The State</h2>
-                    <h1 className='text-4xl md:text-8xl font-light mt-4 mb-8'><span className='font-semibold'>Kingster</span> College</h1>
+                    <h1 className='text-4xl md:text-8xl font-light mt-4 mb-8'><span className='font-semibold'>Kingster</span> University</h1>
                     <button className="relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group">
                         <span className="w-48 h-48 rounded rotate-[-40deg] bg-two absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
                         <span className="relative w-full text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">Take A Tour</span>
@@ -30,91 +31,21 @@ const Home = () => {
                 <section className='my-28'>
                     <SectionTitle heading={'Top Collages'} subHeading={'Nurturing Minds, Cultivating Futures'}></SectionTitle>
                     <div className='grid md:grid-cols-3 gap-8 mt-16'>
-                        <div className='bg-gray-100 '>
-                            <img src="https://www.westvalley.edu/_resources/images/homepage/transfer-grad.jpg" alt="" />
-                            <div className='my-6 px-6'>
-                                <h2 className='color-one text-xl font-bold mb-4'>West Valley College</h2>
-                                <p className='text-gray-600 font-semibold'>Admission Date: <br /><span className='font-normal'>7-22-2023 - 8-22-2023</span></p>
-                                <p className='text-gray-600 font-semibold mt-4'>Upcoming Events:</p>
-                                <ul className='mt-2'>
-                                    <li>1. Career Fair - July 30, 2023</li>
-                                    <li>2. Freshers Welcome Party - August 18, 2023</li>
-                                    <li>3. Alumni Homecoming - October 5, 2023</li>
-                                </ul>
-                                <p className='text-gray-600 font-semibold mt-4'>Research History:</p>
-                                <ul className='mt-2 list-disc ml-4'>
-                                    <li>Pioneering discoveries in Biology</li>
-                                    <li>Award-winning breakthroughs in Computer Science</li>
-                                    <li>Leading contributions to Environmental Studies </li>
-                                </ul>
-                                <p className='text-gray-600 font-semibold mt-4'>Sports:</p>
-                                <ul className='mt-2 list-disc ml-4'>
-                                    <li>Mens Basketball - 10-time champions</li>
-                                    <li>Womens Soccer - 5-time consecutive champions</li>
-                                    <li>Swimming Team - Record-holders in national competitions</li>
-                                </ul>
-                                <button className="relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group mt-6">
-                                    <span className="w-48 h-48 rounded rotate-[-40deg] bg-two absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
-                                    <span className="relative w-full text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">Details</span>
-                                </button>
+                        <div className='bg-gray-50 rounded-md'>
+                            <div className='relative'>
+                                <img src="https://www.westvalley.edu/_resources/images/homepage/transfer-grad.jpg" alt="" className='w-full h-64 object-cover rounded-md shadow-lg' />
+                                <div className='flex items-center gap-1 bg-yellow-500 absolute right-0 bottom-3 p-1 rounded-s-full text-white font-semibold'><FaStar /> 4.8</div>
                             </div>
-                        </div>
-                        <div className='bg-gray-100 '>
-                            <img src="https://www.westvalley.edu/_resources/images/homepage/transfer-grad.jpg" alt="" />
-                            <div className='my-6 px-6'>
-                                <h2 className='color-one text-xl font-bold mb-4'>West Valley College</h2>
-                                <p className='text-gray-600 font-semibold'>Admission Date: <br /><span className='font-normal'>7-22-2023 - 8-22-2023</span></p>
-                                <p className='text-gray-600 font-semibold mt-4'>Upcoming Events:</p>
-                                <ul className='mt-2'>
-                                    <li>1. Career Fair - July 30, 2023</li>
-                                    <li>2. Freshers Welcome Party - August 18, 2023</li>
-                                    <li>3. Alumni Homecoming - October 5, 2023</li>
-                                </ul>
-                                <p className='text-gray-600 font-semibold mt-4'>Research History:</p>
-                                <ul className='mt-2 list-disc ml-4'>
-                                    <li>Pioneering discoveries in Biology</li>
-                                    <li>Award-winning breakthroughs in Computer Science</li>
-                                    <li>Leading contributions to Environmental Studies </li>
-                                </ul>
-                                <p className='text-gray-600 font-semibold mt-4'>Sports:</p>
-                                <ul className='mt-2 list-disc ml-4'>
-                                    <li>Mens Basketball - 10-time champions</li>
-                                    <li>Womens Soccer - 5-time consecutive champions</li>
-                                    <li>Swimming Team - Record-holders in national competitions</li>
-                                </ul>
-                                <button className="relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group mt-6">
-                                    <span className="w-48 h-48 rounded rotate-[-40deg] bg-two absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
-                                    <span className="relative w-full text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">Details</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div className='bg-gray-100 '>
-                            <img src="https://www.westvalley.edu/_resources/images/homepage/transfer-grad.jpg" alt="" />
-                            <div className='my-6 px-6'>
-                                <h2 className='color-one text-xl font-bold mb-4'>West Valley College</h2>
-                                <p className='text-gray-600 font-semibold'>Admission Date: <br /><span className='font-normal'>7-22-2023 - 8-22-2023</span></p>
-                                <p className='text-gray-600 font-semibold mt-4'>Upcoming Events:</p>
-                                <ul className='mt-2'>
-                                    <li>1. Career Fair - July 30, 2023</li>
-                                    <li>2. Freshers Welcome Party - August 18, 2023</li>
-                                    <li>3. Alumni Homecoming - October 5, 2023</li>
-                                </ul>
-                                <p className='text-gray-600 font-semibold mt-4'>Research History:</p>
-                                <ul className='mt-2 list-disc ml-4'>
-                                    <li>Pioneering discoveries in Biology</li>
-                                    <li>Award-winning breakthroughs in Computer Science</li>
-                                    <li>Leading contributions to Environmental Studies </li>
-                                </ul>
-                                <p className='text-gray-600 font-semibold mt-4'>Sports:</p>
-                                <ul className='mt-2 list-disc ml-4'>
-                                    <li>Mens Basketball - 10-time champions</li>
-                                    <li>Womens Soccer - 5-time consecutive champions</li>
-                                    <li>Swimming Team - Record-holders in national competitions</li>
-                                </ul>
-                                <button className="relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group mt-6">
-                                    <span className="w-48 h-48 rounded rotate-[-40deg] bg-two absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
-                                    <span className="relative w-full text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">Details</span>
-                                </button>
+                            <div className='m-4'>
+                                <h2 className='color-one text-xl font-bold'>West Valley College</h2>
+                                <p className='mt-3'>Dynamic MERN Developer is skilled in React.js, MongoDB, Node.js, Next.js, and Express. Proficient in frontend technologies like HTML, CSS, Tailwind, Bootstrap, and Material UI.</p>
+                                <div className='flex items-end justify-between'>
+                                    <p className='text-gray-600 font-semibold'>Admission Date: <br /><span className='font-normal'>7-22-2023 - 8-22-2023</span></p>
+                                    <button className="relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-gray-200 rounded hover:bg-white group mt-6">
+                                        <span className="w-48 h-48 rounded rotate-[-40deg] bg-two absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                                        <span className="relative w-full text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">Details</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>

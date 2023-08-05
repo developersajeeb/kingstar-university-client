@@ -9,17 +9,19 @@ import PrivateRoute from "./PrivateRoute";
 import MyProfile from "../pages/MyProfile/MyProfile";
 import UpdateProfile from "../pages/UpdateProfile/UpdateProfile";
 import AddUniversity from "../pages/AddUniversity/AddUniversity";
-import Colleges from "../pages/Colleges/Colleges";
 import Dashboard from "../pages/Dashboard/dashboard";
 import MyUniversity from "../pages/MyUniversity/MyUniversity";
 import AllUsers from "../pages/AllUsers/AllUsers";
 import AdminRoute from "./AdminRoute";
 import Error from "../pages/Error/Error";
+import Universitys from "../pages/Universitys/Universitys";
+import UniversityDetails from "../pages/UniversityDetails/UniversityDetails";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement: <Error></Error>,
     children: [
       {
         path: '/',
@@ -34,13 +36,14 @@ export const router = createBrowserRouter([
         element: <Register></Register>
       },
       {
-        path: '404',
-        element: <Error></Error>
+        path: 'all-university',
+        element: <Universitys></Universitys>,
+        loader: () => fetch('http://localhost:5000/university')
       },
       {
-        path: 'colleges',
-        element: <PrivateRoute><Colleges></Colleges></PrivateRoute>,
-        loader: () => fetch('http://localhost:5000/university')
+        path: 'university/:id',
+        element: <PrivateRoute><UniversityDetails></UniversityDetails></PrivateRoute>,
+        loader: ({params}) => fetch(`http://localhost:5000/university/${params.id}`)
       },
       {
         path: 'my-profile',
@@ -67,7 +70,8 @@ export const router = createBrowserRouter([
           },
           {
             path: 'all-users',
-            element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
+            element: <AdminRoute><AllUsers></AllUsers></AdminRoute>,
+            loader: () => fetch('http://localhost:5000/users')
           },
           {
             path: 'update-profile/:email',

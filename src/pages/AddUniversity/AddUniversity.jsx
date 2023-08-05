@@ -8,12 +8,12 @@ const AddUniversity = () => {
         const form = event.target;
         const name = form.name.value;
         const photo = form.photo.value;
-        const admissionDate = form.admissionDate.value;
-        const rating = form.rating.value;
-        const events = form.events.value;
-        const research = form.research.value;
-        const sports = form.sports.value;
-        const universityDetails = { name, photo, admissionDate, rating, events, research, sports }
+        const admissionStartDate = form.admissionStartDate.value;
+        const admissionLastDate = form.admissionLastDate.value;
+        const location = form.location.value;
+        const about = form.about.value;
+        const facilities = form.facilities.value;
+        const universityDetails = { name, photo, admissionStartDate, admissionLastDate, location, about, facilities }
 
         fetch('http://localhost:5000/university', {
             method: 'POST',
@@ -24,13 +24,12 @@ const AddUniversity = () => {
         })
             .then(result => result.json())
             .then((data) => {
-                console.log(data);
                 if (data.insertedId) {
                     toast.success('Added University!');
                 } else {
                     toast.error("Error, Please try again!")
                 }
-                // navigate('/');
+                form.reset()
             })
     }
     return (
@@ -53,27 +52,26 @@ const AddUniversity = () => {
                 </div>
                 <div className="grid md:grid-cols-2 gap-4 mb-6">
                     <div>
-                        <label className='block text-gray-600' htmlFor="admissionDate">Admission Last Dates</label>
-                        <input className='border-2 border-gray-300 rounded-md w-full py-3 px-5 mt-2 focus:border-2 text-sm' type="date" name="admissionDate" id="" placeholder="Admission Date" />
+                        <label className='block text-gray-600' htmlFor="admissionStartDate">Admission Starting Dates</label>
+                        <input className='border-2 border-gray-300 rounded-md w-full py-3 px-5 mt-2 focus:border-2 text-sm' type="date" name="admissionStartDate" id="" />
                     </div>
                     <div>
-                        <label className='block text-gray-600' htmlFor="rating">University Rating</label>
-                        <input className='border-2 border-gray-300 rounded-md w-full py-3 px-5 mt-2 focus:border-2 text-sm' type="number" name="rating" id="" required placeholder="University Rating" />
+                        <label className='block text-gray-600' htmlFor="admissionLastDate">Admission Last Dates</label>
+                        <input className='border-2 border-gray-300 rounded-md w-full py-3 px-5 mt-2 focus:border-2 text-sm' type="date" name="admissionLastDate" id="" />
                     </div>
                 </div>
+                <div>
+                    <label className='block text-gray-600' htmlFor="location">University Location</label>
+                    <input className='border-2 border-gray-300 rounded-md w-full py-3 px-5 mt-2 focus:border-2 text-sm' type="text" name="location" id="" required placeholder="University Location" />
+                </div>
                 <div className="my-6">
-                    <label className='block text-gray-600' htmlFor="events">Events</label>
-                    <textarea className="border-2 border-gray-300 rounded-md w-full py-3 px-5 mt-2 focus:border-2 text-sm" name="events" id="events" cols="20" rows="4" placeholder="Events"></textarea>
+                    <label className='block text-gray-600' htmlFor="about">About University</label>
+                    <textarea className="border-2 border-gray-300 rounded-md w-full py-3 px-5 mt-2 focus:border-2 text-sm" name="about" id="about" cols="20" rows="4" placeholder="About University"></textarea>
                 </div>
                 <div>
-                    <label className='block text-gray-600' htmlFor="Research">Research History</label>
-                    <textarea className="border-2 border-gray-300 rounded-md w-full py-3 px-5 mt-2 focus:border-2 text-sm" name="research" id="research" cols="20" rows="4" placeholder="Research History"></textarea>
+                    <label className='block text-gray-600' htmlFor="facilities">Facilities</label>
+                    <textarea className="border-2 border-gray-300 rounded-md w-full py-3 px-5 mt-2 focus:border-2 text-sm" name="facilities" id="facilities" cols="20" rows="4" placeholder="Facilities"></textarea>
                 </div>
-                <div className="mt-6">
-                    <label className='block text-gray-600' htmlFor="sports">Sports</label>
-                    <textarea className="border-2 border-gray-300 rounded-md w-full py-3 px-5 mt-2 focus:border-2 text-sm" name="sports" id="sports" cols="20" rows="4" placeholder="sports"></textarea>
-                </div>
-
                 <button className="mt-6 relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-gray-200 rounded hover:bg-white group">
                     <span className="w-48 h-48 rounded rotate-[-40deg] bg-two absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
                     <span className="relative w-full text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">Save</span>

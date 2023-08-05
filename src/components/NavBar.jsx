@@ -48,7 +48,7 @@ const NavBar = () => {
                     <NavLink to='/'><img className="w-72" src={logo} alt="" /></NavLink>
                     <ul className="flex gap-5 font-medium text-gray-600">
                         <NavLink className={({ isActive }) => isActive ? 'color-one' : 'text-gray-900'} to='/'>Home</NavLink>
-                        <NavLink className={({ isActive }) => isActive ? 'color-one' : 'text-gray-900'} to='/colleges'>Colleges</NavLink>
+                        <NavLink className={({ isActive }) => isActive ? 'color-one' : 'text-gray-900'} to='/all-university'>University</NavLink>
                         <NavLink className={({ isActive }) => isActive ? 'color-one' : 'text-gray-900'} to='/about-us'>About Us</NavLink>
                         <NavLink className={({ isActive }) => isActive ? 'color-one' : 'text-gray-900'} to='/contact'>Contact</NavLink>
                         {
@@ -70,7 +70,7 @@ const NavBar = () => {
                 </div>
                 <ul className={`grid font-medium text-gray-600 bg-gray-100 px-5 pb-5 text-center rounded-lg absolute w-48 duration-300 border ${isOpen ? 'right-2 top-20' : '-top-96 right-2'}`}>
                     <NavLink className={({ isActive }) => isActive ? 'color-one border-b border-gray-300 py-4' : 'border-b border-gray-300 py-4 text-gray-900'} to='/'>Home</NavLink>
-                    <NavLink className={({ isActive }) => isActive ? 'color-one border-b border-gray-300 py-4 ' : ' border-b border-gray-300 py-4 text-gray-900'} to='/colleges'>Colleges</NavLink>
+                    <NavLink className={({ isActive }) => isActive ? 'color-one border-b border-gray-300 py-4 ' : ' border-b border-gray-300 py-4 text-gray-900'} to='/all-university'>University</NavLink>
                     <NavLink className={({ isActive }) => isActive ? 'color-one border-b border-gray-300 py-4 ' : ' border-b border-gray-300 py-4 text-gray-900'} to='/about-us'>About Us</NavLink>
                     <NavLink className={({ isActive }) => isActive ? 'color-one border-b border-gray-300 py-4 ' : ' border-b border-gray-300 py-4 text-gray-900'} to='/contact'>Contact</NavLink>
                     {
