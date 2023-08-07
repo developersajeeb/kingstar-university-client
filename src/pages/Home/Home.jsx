@@ -4,8 +4,38 @@ import SectionTitle from '../../components/SectionTitle';
 import ImageGallery from '../../components/ImageGallery';
 import ReviewSlider from '../../components/ReviewSlider';
 import { FaStar } from "react-icons/fa";
+import { Link, useLoaderData, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import useAuth from '../../hooks/useAuth';
+import Swal from 'sweetalert2';
 
 const Home = () => {
+    const feedbacks = useLoaderData();
+    const [topUniversity, setTopUniversity] = useState();
+    const navigate = useNavigate()
+    const { user } = useAuth()
+
+    // Top University Loaded
+    useEffect(() => {
+        fetch('https://collage-bookign-server.vercel.app/top-university/top')
+            .then(res => res.json())
+            .then(data => setTopUniversity(data))
+    }, [])
+
+    const handleView = () => {
+        if (user) {
+            const from = location.state?.from?.pathname;
+            navigate(from);
+        } else {
+            navigate('/login');
+            Swal.fire(
+                'Login First',
+                'Please log in to view details.',
+                'warning'
+            )
+        }
+    }
+
     return (
         <>
             <header style={{ backgroundImage: `url(${bannerImg})` }} className='bg-cover bg-center bg-no-repeat'>
@@ -21,7 +51,7 @@ const Home = () => {
             <main className='px-5 py-36 md:p-40'>
                 <section className='-mt-52 md:-mt-56'>
                     <form className='bg-white shadow-lg p-8 md:py-10 md:px-14 relative rounded-lg'>
-                        <input className='p-3 w-full border-2 border-gray-300 rounded-md' type="text" name="search" id="search" placeholder='Search College' />
+                        <input className='p-3 w-full border-2 border-gray-300 rounded-md' type="text" name="search" id="search" placeholder='Search University' />
                         <button type='submit' className='absolute right-10 top-10 md:right-16 md:top-12 text-white bg-two p-2 rounded-md'>
                             <FaSearch size={20} />
                         </button>
@@ -29,25 +59,30 @@ const Home = () => {
                 </section>
 
                 <section className='my-28'>
-                    <SectionTitle heading={'Top Collages'} subHeading={'Nurturing Minds, Cultivating Futures'}></SectionTitle>
+                    <SectionTitle heading={'Top University'} subHeading={'Nurturing Minds, Cultivating Futures'}></SectionTitle>
                     <div className='grid md:grid-cols-3 gap-8 mt-16'>
-                        <div className='bg-gray-50 rounded-md'>
-                            <div className='relative'>
-                                <img src="https://www.westvalley.edu/_resources/images/homepage/transfer-grad.jpg" alt="" className='w-full h-64 object-cover rounded-md shadow-lg' />
-                                <div className='flex items-center gap-1 bg-yellow-500 absolute right-0 bottom-3 p-1 rounded-s-full text-white font-semibold'><FaStar /> 4.8</div>
-                            </div>
-                            <div className='m-4'>
-                                <h2 className='color-one text-xl font-bold'>West Valley College</h2>
-                                <p className='mt-3'>Dynamic MERN Developer is skilled in React.js, MongoDB, Node.js, Next.js, and Express. Proficient in frontend technologies like HTML, CSS, Tailwind, Bootstrap, and Material UI.</p>
-                                <div className='flex items-end justify-between'>
-                                    <p className='text-gray-600 font-semibold'>Admission Date: <br /><span className='font-normal'>7-22-2023 - 8-22-2023</span></p>
-                                    <button className="relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-gray-200 rounded hover:bg-white group mt-6">
-                                        <span className="w-48 h-48 rounded rotate-[-40deg] bg-two absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
-                                        <span className="relative w-full text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">Details</span>
-                                    </button>
+                        {
+                            topUniversity?.map(top => <div key={top._id} className='bg-gray-50 rounded-md'>
+                                <div className='relative'>
+                                    <img src={top.photo} alt="" className='w-full h-64 object-cover rounded-md shadow-lg' />
+                                    <div className='flex items-center gap-1 bg-yellow-500 absolute right-0 bottom-3 p-1 rounded-s-full text-white font-semibold'><FaStar /> {top.rating || 'N/A'}</div>
                                 </div>
-                            </div>
-                        </div>
+                                <div className='m-4'>
+                                    <h2 className='color-one text-xl font-bold'>{top.name}</h2>
+                                    <p className='mt-3'>{top.about.slice(0, 176)}...</p>
+                                    <div className='flex items-end justify-between'>
+                                        <p className='text-gray-600 font-semibold'>Admission Date: <br /><span className='font-normal'>{top.admissionStartDate} - {top.admissionLastDate}</span></p>
+                                        <Link onClick={handleView} to={`/university/${top._id}`}>
+                                            <button className="relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-gray-200 rounded hover:bg-white group mt-6">
+                                                <span className="w-48 h-48 rounded rotate-[-40deg] bg-two absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                                                <span className="relative w-full text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">Details</span>
+                                            </button>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div>)
+                        }
+
                     </div>
                 </section>
 
@@ -103,7 +138,7 @@ const Home = () => {
                 <section>
                     <SectionTitle heading={'Student Feedback'} subHeading={'Importance of Gathering Student Feedback'}></SectionTitle>
                     <div className='mt-16'>
-                        <ReviewSlider></ReviewSlider>
+                        <ReviewSlider feedbacks={feedbacks}></ReviewSlider>
                     </div>
                 </section>
             </main>

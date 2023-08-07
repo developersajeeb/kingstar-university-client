@@ -1,8 +1,9 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 import { useContext } from "react";
-import { FaThLarge, FaHome, FaUserEdit, FaUniversity, FaArrowLeft, FaUserAlt } from "react-icons/fa";
+import { FaThLarge, FaHome, FaUserEdit, FaUniversity, FaArrowLeft, FaUserAlt, FaStar } from "react-icons/fa";
 import useAdmin from "../../hooks/useAdmin";
+import { FaClipboardList } from "react-icons/fa";
 
 const MyProfile = () => {
     const { user } = useContext(AuthContext);
@@ -41,7 +42,9 @@ const MyProfile = () => {
                                 isAdmin ?
                                     <>
                                         <li><NavLink className={({ isActive }) => isActive ? 'color-one font-medium' : 'text-gray-900 font-medium'} to='/my-profile/add-university'><FaUniversity /> Add University</NavLink></li>
+                                        <li><NavLink className={({ isActive }) => isActive ? 'color-one font-medium' : 'text-gray-900 font-medium'} to='/my-profile/all-university'><FaClipboardList /> All University</NavLink></li>
                                         <li><NavLink className={({ isActive }) => isActive ? 'color-one font-medium' : 'text-gray-900 font-medium'} to='/my-profile/all-users'><FaUserAlt /> All Users</NavLink></li>
+                                        <li><NavLink className={({ isActive }) => isActive ? 'color-one font-medium' : 'text-gray-900 font-medium'} to='/my-profile/feedbacks'><FaStar /> Feedbacks</NavLink></li>
                                     </>
                                     :
                                     <li><NavLink className={({ isActive }) => isActive ? 'color-one font-medium' : 'text-gray-900 font-medium'} to={`/my-profile/my-university`}><FaUniversity /> My University</NavLink></li>

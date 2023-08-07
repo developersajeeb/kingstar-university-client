@@ -18,7 +18,7 @@ const SocialLogin = () => {
 
                 const loggedInUser = result.user;
                 const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email, role: 'normalUser', photo: loggedInUser.photoURL }
-                fetch('http://localhost:5000/users', {
+                fetch('https://collage-bookign-server.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -45,7 +45,7 @@ const SocialLogin = () => {
                 const loggedInUser = result.user;
                 const saveUser = { name: loggedInUser.displayName, email: loggedInUser?.email, role: 'user', photo: loggedInUser.photoURL }
                 
-                fetch('http://localhost:5000/users', {
+                fetch('https://collage-bookign-server.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

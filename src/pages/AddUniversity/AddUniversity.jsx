@@ -1,7 +1,10 @@
+import { Rating } from "@smastrom/react-rating";
+import { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 
 
 const AddUniversity = () => {
+    const [rating, setRating] = useState(2);
 
     const handleAddUniversity = event => {
         event.preventDefault();
@@ -13,9 +16,9 @@ const AddUniversity = () => {
         const location = form.location.value;
         const about = form.about.value;
         const facilities = form.facilities.value;
-        const universityDetails = { name, photo, admissionStartDate, admissionLastDate, location, about, facilities }
+        const universityDetails = { name, photo, admissionStartDate, admissionLastDate, location, rating, about, facilities, rank: 'normal' }
 
-        fetch('http://localhost:5000/university', {
+        fetch('https://collage-bookign-server.vercel.app/university', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -60,9 +63,19 @@ const AddUniversity = () => {
                         <input className='border-2 border-gray-300 rounded-md w-full py-3 px-5 mt-2 focus:border-2 text-sm' type="date" name="admissionLastDate" id="" />
                     </div>
                 </div>
-                <div>
-                    <label className='block text-gray-600' htmlFor="location">University Location</label>
-                    <input className='border-2 border-gray-300 rounded-md w-full py-3 px-5 mt-2 focus:border-2 text-sm' type="text" name="location" id="" required placeholder="University Location" />
+                <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label className='block text-gray-600' htmlFor="location">University Location</label>
+                        <input className='border-2 border-gray-300 rounded-md w-full py-3 px-5 mt-2 focus:border-2 text-sm' type="text" name="location" id="" required placeholder="University Location" />
+                    </div>
+                    <div>
+                        <label className='block text-gray-600 mb-2' htmlFor="star">Star</label>
+                        <Rating
+                            style={{ maxWidth: 140 }}
+                            value={rating}
+                            onChange={setRating}
+                        />
+                    </div>
                 </div>
                 <div className="my-6">
                     <label className='block text-gray-600' htmlFor="about">About University</label>

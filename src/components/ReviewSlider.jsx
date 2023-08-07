@@ -1,9 +1,12 @@
+/* eslint-disable react/prop-types */
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Autoplay, Pagination } from 'swiper/modules';
+import { Rating } from '@smastrom/react-rating';
 
-const ReviewSlider = () => {
+const ReviewSlider = ({ feedbacks }) => {
+
     return (
         <>
             <Swiper
@@ -34,81 +37,28 @@ const ReviewSlider = () => {
                 modules={[Autoplay, Pagination]}
                 className="mySwiper"
             >
-                <SwiperSlide>
-                    <div className='text-center bg-gray-50 grid gap-4 p-8 rounded-lg border'>
-                        <figure>
-                            <div className='border-2 border-[#3DB166] p-1 inline-block rounded-full'><img className='w-24 mx-auto rounded-full object-cover' src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXw3NjA4Mjc3NHx8ZW58MHx8fHx8&w=1000&q=80" alt="" /></div>
-                            <p className='mt-2 font-semibold color-one'>Sajeeb Dev</p>
-                        </figure>
-                        <div>
-                            <h3 className='font-semibold mb-2'>West Valley College</h3>
-                            <p className='text-gray-600'>Theres not much to say about YETI stainless steel tumblers that hasnt been said. Theres a reason theyre so highly rated. I filled mine with ice and water at 8:30am last week and drove to work sipping it. I left it in my car when I went into the office.</p>
+                {
+                    feedbacks.map(feedback => <SwiperSlide key={feedback._id}>
+                        <div className='text-center bg-gray-50 grid gap-4 p-8 rounded-lg border'>
+                            <figure>
+                                <div className='border-2 border-[#3DB166] p-1 inline-block rounded-full'><img className='w-24 mx-auto rounded-full object-cover' src={feedback.userPhoto} alt="" /></div>
+                                <p className='mt-2 font-semibold color-one'>{feedback.userName}</p>
+                            </figure>
+                            <div>
+                                <h3 className='font-semibold mb-2'>{feedback.name}</h3>
+                                <p className='text-gray-600'>{feedback.feedback}</p>
+                            </div>
+                            <div className='flex justify-center'>
+                                <Rating
+                                    style={{ maxWidth: 140 }}
+                                    value={feedback.rating}
+                                    readOnly
+                                />
+                            </div>
                         </div>
-                        <div>
-                            <p className='font-semibold text-gray-600'>12.09.2019</p>
-                        </div>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className='text-center bg-gray-50 grid gap-4 p-8 rounded-lg border'>
-                        <figure>
-                            <div className='border-2 border-[#3DB166] p-1 inline-block rounded-full'><img className='w-24 mx-auto rounded-full object-cover' src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXw3NjA4Mjc3NHx8ZW58MHx8fHx8&w=1000&q=80" alt="" /></div>
-                            <p className='mt-2 font-semibold color-one'>Sajeeb Dev</p>
-                        </figure>
-                        <div>
-                            <h3 className='font-semibold mb-2'>West Valley College</h3>
-                            <p className='text-gray-600'>Theres not much to say about YETI stainless steel tumblers that hasnt been said. Theres a reason theyre so highly rated. I filled mine with ice and water at 8:30am last week and drove to work sipping it. I left it in my car when I went into the office.</p>
-                        </div>
-                        <div>
-                            <p className='font-semibold text-gray-600'>12.09.2019</p>
-                        </div>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className='text-center bg-gray-50 grid gap-4 p-8 rounded-lg border'>
-                        <figure>
-                            <div className='border-2 border-[#3DB166] p-1 inline-block rounded-full'><img className='w-24 mx-auto rounded-full object-cover' src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXw3NjA4Mjc3NHx8ZW58MHx8fHx8&w=1000&q=80" alt="" /></div>
-                            <p className='mt-2 font-semibold color-one'>Sajeeb Dev</p>
-                        </figure>
-                        <div>
-                            <h3 className='font-semibold mb-2'>West Valley College</h3>
-                            <p className='text-gray-600'>Theres not much to say about YETI stainless steel tumblers that hasnt been said. Theres a reason theyre so highly rated. I filled mine with ice and water at 8:30am last week and drove to work sipping it. I left it in my car when I went into the office.</p>
-                        </div>
-                        <div>
-                            <p className='font-semibold text-gray-600'>12.09.2019</p>
-                        </div>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className='text-center bg-gray-50 grid gap-4 p-8 rounded-lg border'>
-                        <figure>
-                            <div className='border-2 border-[#3DB166] p-1 inline-block rounded-full'><img className='w-24 mx-auto rounded-full object-cover' src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXw3NjA4Mjc3NHx8ZW58MHx8fHx8&w=1000&q=80" alt="" /></div>
-                            <p className='mt-2 font-semibold color-one'>Sajeeb Dev</p>
-                        </figure>
-                        <div>
-                            <h3 className='font-semibold mb-2'>West Valley College</h3>
-                            <p className='text-gray-600'>Theres not much to say about YETI stainless steel tumblers that hasnt been said. Theres a reason theyre so highly rated. I filled mine with ice and water at 8:30am last week and drove to work sipping it. I left it in my car when I went into the office.</p>
-                        </div>
-                        <div>
-                            <p className='font-semibold text-gray-600'>12.09.2019</p>
-                        </div>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className='text-center bg-gray-50 grid gap-4 p-8 rounded-lg border'>
-                        <figure>
-                            <div className='border-2 border-[#3DB166] p-1 inline-block rounded-full'><img className='w-24 mx-auto rounded-full object-cover' src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXw3NjA4Mjc3NHx8ZW58MHx8fHx8&w=1000&q=80" alt="" /></div>
-                            <p className='mt-2 font-semibold color-one'>Sajeeb Dev</p>
-                        </figure>
-                        <div>
-                            <h3 className='font-semibold mb-2'>West Valley College</h3>
-                            <p className='text-gray-600'>Theres not much to say about YETI stainless steel tumblers that hasnt been said. Theres a reason theyre so highly rated. I filled mine with ice and water at 8:30am last week and drove to work sipping it. I left it in my car when I went into the office.</p>
-                        </div>
-                        <div>
-                            <p className='font-semibold text-gray-600'>12.09.2019</p>
-                        </div>
-                    </div>
-                </SwiperSlide>
+                    </SwiperSlide>)
+                }
+
 
                 <div className='mt-10 border border-white'></div>
             </Swiper>

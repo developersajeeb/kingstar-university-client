@@ -10,7 +10,7 @@ const useAdmin = () => {
         if (!loading && user) {
           setIsAdminLoading(true);
     
-          fetch(`http://localhost:5000/user/admin/${user.email}`)
+          fetch(`https://collage-bookign-server.vercel.app/user/admin/${user.email}`)
             .then((response) => response.json())
             .then((data) => {
               setIsAdmin(data.admin);

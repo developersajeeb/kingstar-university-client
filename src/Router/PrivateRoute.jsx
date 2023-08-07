@@ -1,11 +1,13 @@
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProviders";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 
 
 // eslint-disable-next-line react/prop-types
 const PrivateRoute = ({children}) => {
     const {user, loading} = useContext(AuthContext);
+    const location = useLocation();
+
     if(loading) {
         return <div aria-label="Loading..." role="status" className="h-[500px] flex justify-center items-center">
         <svg className="h-12 w-12 animate-spin stroke-gray-500" viewBox="0 0 256 256">
@@ -51,7 +53,7 @@ const PrivateRoute = ({children}) => {
     if(user) {
         return children;
     }
-    return <Navigate to='/login'></Navigate>
+    return <Navigate to='/login' state={{ from: location }} replace></Navigate>
 };
 
 export default PrivateRoute;

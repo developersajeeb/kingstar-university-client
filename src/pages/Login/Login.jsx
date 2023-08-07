@@ -9,10 +9,9 @@ const Login = () => {
     const location = useLocation();
     const emailRef = useRef();
     const [resetError, setResetError] = useState('');
-
-    const from = location.state?.from?.pathname || '/';
-
     const {singIn, ResetPassword} = useContext(AuthContext);
+
+    const from = location.state?.from?.pathname;
 
     const handleLoginUser = event => {
         event.preventDefault();

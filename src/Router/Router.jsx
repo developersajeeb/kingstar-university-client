@@ -16,6 +16,8 @@ import AdminRoute from "./AdminRoute";
 import Error from "../pages/Error/Error";
 import Universitys from "../pages/Universitys/Universitys";
 import UniversityDetails from "../pages/UniversityDetails/UniversityDetails";
+import Feedbacks from "../pages/Feedbacks/Feedbacks";
+import AllUniversity from "../pages/AllUniversity/AllUniversity";
 
 export const router = createBrowserRouter([
   {
@@ -25,7 +27,8 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Home></Home>
+        element: <Home></Home>,
+        loader: () => fetch('https://collage-bookign-server.vercel.app/feedback/approval')
       },
       {
         path: 'login',
@@ -38,12 +41,12 @@ export const router = createBrowserRouter([
       {
         path: 'all-university',
         element: <Universitys></Universitys>,
-        loader: () => fetch('http://localhost:5000/university')
+        loader: () => fetch('https://collage-bookign-server.vercel.app/university')
       },
       {
         path: 'university/:id',
         element: <PrivateRoute><UniversityDetails></UniversityDetails></PrivateRoute>,
-        loader: ({params}) => fetch(`http://localhost:5000/university/${params.id}`)
+        loader: ({params}) => fetch(`https://collage-bookign-server.vercel.app/university/${params.id}`)
       },
       {
         path: 'my-profile',
@@ -52,7 +55,7 @@ export const router = createBrowserRouter([
           {
             path: 'dashboard/:email',
             element: <Dashboard></Dashboard>,
-            loader: ({ params }) => fetch(`http://localhost:5000/user?email=${params.email}`),
+            loader: ({ params }) => fetch(`https://collage-bookign-server.vercel.app/user?email=${params.email}`),
           },
           {
             path: 'my-university',
@@ -69,14 +72,24 @@ export const router = createBrowserRouter([
             // return null}
           },
           {
+            path: 'all-university',
+            element: <AdminRoute><AllUniversity></AllUniversity></AdminRoute>,
+            loader: () => fetch('https://collage-bookign-server.vercel.app/university')
+          },
+          {
             path: 'all-users',
             element: <AdminRoute><AllUsers></AllUsers></AdminRoute>,
-            loader: () => fetch('http://localhost:5000/users')
+            loader: () => fetch('https://collage-bookign-server.vercel.app/users')
+          },
+          {
+            path: 'feedbacks',
+            element: <AdminRoute><Feedbacks></Feedbacks></AdminRoute>,
+            loader: () => fetch('https://collage-bookign-server.vercel.app/feedback')
           },
           {
             path: 'update-profile/:email',
             element: <UpdateProfile></UpdateProfile>,
-            loader: ({ params }) => fetch(`http://localhost:5000/user?email=${params.email}`),
+            loader: ({ params }) => fetch(`https://collage-bookign-server.vercel.app/user?email=${params.email}`),
           }
         ]
       },

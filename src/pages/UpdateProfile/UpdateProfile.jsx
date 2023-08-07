@@ -20,7 +20,7 @@ const UpdateProfile = () => {
         const bio = form.bio.value;
         const personalData = { name, email, phone, university, country, city, postal, bio }
 
-        fetch(`http://localhost:5000/user/${user?.email}`, {
+        fetch(`https://collage-bookign-server.vercel.app/user/${user?.email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

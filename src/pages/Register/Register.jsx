@@ -25,7 +25,7 @@ const Register = () => {
                     .then(() => {
 
                         const saveUser = { name, email, password, photo, role }
-                        fetch('http://localhost:5000/users', {
+                        fetch('https://collage-bookign-server.vercel.app/users', {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json'
